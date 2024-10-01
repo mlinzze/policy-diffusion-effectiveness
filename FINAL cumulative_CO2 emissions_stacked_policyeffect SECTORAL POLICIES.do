@@ -3,7 +3,7 @@
 * Change from all renewable, to solar, hydro, or wind in line 38
 
 set more 1
-use  "U:\SAM Publications\Climate Policy Diffusion\co2regs.dta", clear
+use  "U:\Climate Policy Diffusion\co2regs.dta", clear
 gen pop=stategdp/gdppc
 gen co2total = co2percap*pop
 gen co2pergdp=co2percap/gdppc
@@ -26,10 +26,10 @@ expand 8
 sort state year
 destring stateabbr, replace
 
-save "U:\SAM Publications\Climate Policy Diffusion\co2regs_expanded.dta", replace 
+save "U:\Climate Policy Diffusion\co2regs_expanded.dta", replace 
 
 
-use "U:\SAM Publications\Climate Policy Diffusion\data_all_transformed.dta", clear
+use "U:\Climate Policy Diffusion\data_all_transformed.dta", clear
 drop if year<1980
 sort stateabbr year
 
@@ -79,7 +79,7 @@ policy_type=="z_gasoline_tax" |
 
 
 sort state year
-merge m:m state year using "U:\SAM Publications\Climate Policy Diffusion\co2regs_expanded.dta" 
+merge m:m state year using "U:\Climate Policy Diffusion\co2regs_expanded.dta" 
 
 drop _merge
 sort state year
@@ -88,7 +88,7 @@ drop if year<1991
 
 *** MERGE PRICE DATA
 
-merge m:1 year using "U:\SAM Publications\Climate Policy Diffusion\coalandngprice.dta"
+merge m:1 year using "U:\Climate Policy Diffusion\coalandngprice.dta"
 drop _merge
 gen relprice=coalprice/ngprice
 */
@@ -104,80 +104,80 @@ replace powersecemission=co2total
 *NO LAGS TO POLICIES**
 
 xtreg  powersecemission  policy  i.stateabbr i.year, robust 
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies0.xls", replace e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies0.xls", replace e(all)
 xtreg  powersecemission policy  gdppc    i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
 xtreg  powersecemission policy  gdppc  mininggdpshare   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
 xtreg  powersecemission policy  gdppc  mininggdpshare democrat   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
 xtreg  powersecemission policy  gdppc  mininggdpshare    democrat  i.year i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
 xtreg  powersecemission policy  gdppc  mininggdpshare    democrat  i.year_policy_fe  i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies0.xls", append e(all)
 
 
 
 *POLICIES LAGGED 1 YEAR
 xtreg  powersecemission  policylag1 i.stateabbr i.year, robust 
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies1.xls", replace e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies1.xls", replace e(all)
 xtreg  powersecemission policylag1 gdppc    i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
 xtreg  powersecemission policylag1 gdppc  mininggdpshare   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
 xtreg  powersecemission policylag1 gdppc  mininggdpshare democrat   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
 xtreg  powersecemission policylag1 gdppc  mininggdpshare    democrat  i.year i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
 xtreg  powersecemission policylag1 gdppc  mininggdpshare    democrat  i.year_policy_fe  i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies1.xls", append e(all)
 
 
 
 * POLICIES LAGGED 2 YEARS
 xtreg  powersecemission  policylag2 i.stateabbr i.year, robust 
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies2.xls", replace e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies2.xls", replace e(all)
 xtreg  powersecemission policylag2 gdppc    i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
 xtreg  powersecemission policylag2 gdppc  mininggdpshare   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
 xtreg  powersecemission policylag2 gdppc  mininggdpshare    democrat     i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
 xtreg  powersecemission policylag2 gdppc  mininggdpshare    democrat  i.year i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
 xtreg  powersecemission policylag2 gdppc  mininggdpshare    democrat  i.year_policy_fe  i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies2.xls", append e(all)
 
 
 *POLICIES LAGGED 3 YEARS
 xtreg  powersecemission  policylag3 i.stateabbr i.year, robust 
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies3.xls", replace e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies3.xls", replace e(all)
 xtreg  powersecemission policylag3 gdppc    i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
 xtreg  powersecemission policylag3 gdppc  mininggdpshare   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
 xtreg  powersecemission policylag3 gdppc  mininggdpshare    democrat     i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
 xtreg  powersecemission policylag3 gdppc  mininggdpshare    democrat  i.year i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
 xtreg  powersecemission policylag3 gdppc  mininggdpshare    democrat  i.year_policy_fe  i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies3.xls", append e(all)
 
 
 
 
 *POLICY LAGGED 5
 xtreg  powersecemission  policylag5 i.stateabbr i.year, robust 
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies5.xls", replace e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies5.xls", replace e(all)
 xtreg  powersecemission policylag5 gdppc    i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
 xtreg  powersecemission policylag5 gdppc  mininggdpshare   i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
 xtreg  powersecemission policylag5 gdppc  mininggdpshare    democrat     i.stateabbr i.year, robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
 xtreg  powersecemission policylag5 gdppc  mininggdpshare    democrat  i.year i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
 xtreg  powersecemission policylag5 gdppc  mininggdpshare    democrat  i.year_policy_fe  i.state_policy_fe , robust
-outreg2 using "U:\SAM Publications\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
+outreg2 using "U:\Climate Policy Diffusion\renewenergyallpolicies5.xls", append e(all)
 
 

@@ -8,7 +8,7 @@ gen pop=stategdp/gdppc
 gen co2total = co2percap*pop
 gen co2pergdp=co2percap/gdppc
 
-
+             
 sort state year
 
 drop if year<1980

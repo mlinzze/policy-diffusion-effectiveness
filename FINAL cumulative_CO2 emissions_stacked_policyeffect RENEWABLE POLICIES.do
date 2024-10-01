@@ -1,7 +1,7 @@
 *COPY of the other stacked policies for POWER SECTOR CO2 emissions but now using C02 emissions of all sectors(total) as dep variable.
 * Key change (total, per capita, state gdp in line 84)
 * Change from all renewable, to solar, hydro, or wind in line 38
-
+   
 set more 1
 use  "U:\Climate Policy Diffusionco2regs.dta", clear
 gen pop=stategdp/gdppc

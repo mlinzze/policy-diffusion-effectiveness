@@ -2,7 +2,7 @@
 * the share of renewable energy CAPACITY. 
 * KEY CHaNGE on LINE 30: replace hydro with solar or wind or all renewables
 
-set more 1
+set more 1  
 
 use "U:\Climate Policy Diffusion\total electricity capacity by source.dta", clear
 

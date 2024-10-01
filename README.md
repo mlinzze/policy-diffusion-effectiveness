@@ -14,6 +14,8 @@ All data required for estimating the regressions are included in the following d
 Instructions to Replicators
 ---------------------------
 
+The path in the do files must be updated to reflect the user's path (pointing to the directory/directories where the data are stored). That is, the path “U:\ ...” where “U” is the authors’ local directory must be replaced with the user’s local directory.
+
 ### Table 2: Climate Policies and the Share of Renewables in Total Energy Capacity
 1. For Columns 1, 4, 7, and 10: run the do file FINAL_cumulative_renewable_averagepolicyeffect ALL POLICIES.do
 2. For Columnds 2, 5, 8, and 11: run the do file FINAL_cumulative_renewable_averagepolicyeffect RENEWABLE POLICIES.do
